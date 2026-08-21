@@ -62,6 +62,16 @@ const targets = {
 
 const buildTarget = targets[targetFormat];
 
+function copyLocalAssets() {
+  const sourceDirectory = './src/fonts';
+  const destinationDirectory = './dist/fonts';
+
+  fs.mkdirSync(destinationDirectory, { recursive: true });
+  for (const font of fs.readdirSync(sourceDirectory)) {
+    fs.copyFileSync(`${sourceDirectory}/${font}`, `${destinationDirectory}/${font}`);
+  }
+}
+
 async function build() {
   if (isWatch) {
     const ctx = await esbuild.context({ ...baseConfig, ...buildTarget });
@@ -72,6 +82,7 @@ async function build() {
     await Promise.all(Object.values(targets).map(target =>
       esbuild.build({ ...baseConfig, ...target })
     ));
+    copyLocalAssets();
     console.log(`✅ Build complete: ${buildTarget.outfile}`);
   }
 }

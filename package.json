@@ -8,18 +8,19 @@
   "scripts": {
     "watch": "node esbuild.config.js --watch",
     "build": "node esbuild.config.js --minify",
-    "lint": "eslint src --ext .ts,.js"
+    "lint": "eslint src --ext .ts,.js",
+    "test": "npm run build && node test/local-assets.test.mjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bennyluk/Sienna-Accessibility-Widget.git"
+    "url": "git+https://github.com/Bauhaus-Tech/Sienna-Accessibility-Widget.git"
   },
   "author": "Benny Luk",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bennyluk/Sienna-Accessibility-Widget/issues"
+    "url": "https://github.com/Bauhaus-Tech/Sienna-Accessibility-Widget/issues"
   },
-  "homepage": "https://accessibility-widget.pages.dev/",
+  "homepage": "https://github.com/Bauhaus-Tech/Sienna-Accessibility-Widget",
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "esbuild": "0.25.1",

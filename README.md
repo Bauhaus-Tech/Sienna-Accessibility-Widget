@@ -1,41 +1,54 @@
-# 👩‍🦽 Sienna: Accessibility Widget for Websites
+# Sienna Accessibility Widget — Bauhaus fork
 
-![Banner Image](banner.png)
+This is a public fork of the upstream Sienna Accessibility Widget 2.0.1 source.
+It retains the upstream MIT licence in [LICENSE](LICENSE). The source and build
+tooling in this repository are the authoritative source for its distributed
+JavaScript files.
 
-[![GitHub license](https://img.shields.io/github/license/bennyluk/Sienna-Accessibility-Widget)](https://github.com/bennyluk/Sienna-Accessibility-Widget/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/v/release/bennyluk/Sienna-Accessibility-Widget)](https://github.com/bennyluk/Sienna-Accessibility-Widget/releases)
-[![GitHub issues](https://img.shields.io/github/issues/bennyluk/Sienna-Accessibility-Widget)](https://github.com/bennyluk/Sienna-Accessibility-Widget/issues)
+## Local asset policy
 
-Sienna: accessibility widget for websites. easy to install, just copy and paste the plugin. Fast performance with lightweight plugin (~30kb).
+The browser bundle does not retrieve font or locale assets from a third-party
+host:
 
-## 🎉 Getting Started
-[View Demo](https://accessibility-widget.pages.dev)
+- Locale JSON modules are bundled into `dist/sienna-accessibility.umd.js`.
+- The readable-font control resolves its OpenDyslexic font files from
+  `dist/fonts/` next to the bundle that loaded it.
+- An integration that injects the bundle inline can set
+  `data-asw-asset-base-url` on its script element to provide the local asset
+  base URL.
 
-[Install the plugin quickly with just a copy and paste](https://accessibility-widget.pages.dev/#setup)
+The redistributed OpenDyslexic files are covered by the SIL Open Font License
+1.1 in [LICENSES/OpenDyslexic-OFL-1.1.txt](LICENSES/OpenDyslexic-OFL-1.1.txt).
 
-## 🚀 Features
+## Build and verify
 
-✅ **Multilingual Support**: Supports multiple languages to ensure a seamless user experience for all users.
+Use a supported Node.js release, then run:
 
-✅ **Dyslexia Font**:  Dyslexia font to make reading easier for dyslexic users.
+```sh
+npm install
+npm test
+```
 
-✅ **Adjustable Font Size and Highlighting Text**: Users can easily adjust the font size and highlight text to their liking, making it easier to read content.
+`npm test` builds the ESM, CommonJS, and UMD bundles and verifies that the UMD
+contains no external font or locale URL and that both local font files are
+present in `dist/fonts/`. To create the distributable files without running the
+verification, use:
 
-✅ **Color Adjustments, Contrast, Saturation, and Monochrome**: Allows users to customize the color scheme of your website, making it easier for them to read and navigate.
+```sh
+npm run build
+```
 
-✅ **Reading Guide, Stop Animations, and Big Cursor**: Helpful tools like a reading guide, the ability to stop animations, and a big cursor to make browsing your website easier for users with visual impairments.
+The `dist/` directory is generated output and is intentionally not committed.
 
-## 📌 TODO
+## Features
 
-- Accessibility Profiles
-- Screen Reader
-- Voice Navigation
-- Position of Button
-- Inject Icon in code
-- Support More Languages
+- Multilingual interface with bundled locale data
+- Readable OpenDyslexic font
+- Font-size, contrast, spacing, highlighting, animation, cursor, and reading
+  controls
 
-## 🤝 Contributing
-We welcome contributions from anyone who is interested in improving this. If you would like to contribute, please fork the repository and submit a pull request. ❤️
+## Contributing
 
-## 🎓 License
-Sienna is released under the MIT License
+Contributions should include source changes, a reproducible build, and tests
+for observable behavior. Do not add browser-time dependencies on third-party
+font or locale hosts.
