@@ -43,9 +43,10 @@ test('built toolbar controls use only local readable-font assets', async () => {
     await page.locator('[data-key="high-contrast"]').click();
     assert.equal(await page.locator('html').evaluate((element) => element.classList.contains('aws-filter')), true);
 
-    const fontRequest = page.waitForRequest((request) => request.url().endsWith('/dist/fonts/OpenDyslexic3-Regular.woff'));
+    const fontResponse = page.waitForResponse((response) => response.url().endsWith('/dist/fonts/OpenDyslexic3-Regular.woff') && response.ok());
     await page.locator('[data-key="readable-font"]').click();
-    await fontRequest;
+    await fontResponse;
+    assert.match(await heading.evaluate((element) => getComputedStyle(element).fontFamily), /OpenDyslexic3/);
 
     assert.equal(requests.every((url) => new URL(url).origin === origin), true);
   } finally {
