@@ -1,4 +1,5 @@
-// @ts-expect-error HTML imports are transformed by the build configuration.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- HTML imports are transformed by the build configuration.
+// @ts-ignore
 import template from "./widget.html";
 import css from "./widget.css";
 import { openMenu } from "../menu/menu";
@@ -93,4 +94,3 @@ function getButtonStyle() {
             };
     }
 }
-

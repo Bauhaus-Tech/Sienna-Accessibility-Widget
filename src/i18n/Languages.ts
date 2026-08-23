@@ -62,10 +62,10 @@ export interface ILanguage {
 
 export const LANGUAGE_DICTIONARY: Record<string, ILanguage> = {};
 
-// @ts-expect-error Dynamic locale imports are resolved by the bundler.
 export async function loadLanguages() {
   for (const locale of locales) {
-    // @ts-expect-error Dynamic locale imports are resolved by the bundler.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Dynamic locale imports are resolved by the bundler.
+    // @ts-ignore
     LANGUAGE_DICTIONARY[locale] = (await import(`../locales/${locale}.json`)).default;
   }
 }
