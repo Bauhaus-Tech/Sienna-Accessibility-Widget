@@ -9,7 +9,7 @@
     "watch": "node esbuild.config.js --watch",
     "build": "node esbuild.config.js --minify",
     "lint": "eslint src --ext .ts,.js",
-    "test": "npm run build && node --test test/local-assets.test.mjs test/browser-local-assets.test.mjs"
+    "test": "npm run build && node --test test/local-assets.test.mjs test/browser-local-assets.test.mjs test/no-external-links.test.mjs"
   },
   "repository": {
     "type": "git",
