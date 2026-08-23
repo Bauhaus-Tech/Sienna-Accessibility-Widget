@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error HTML imports are transformed by the build configuration.
 import template from "./menu.html";
 
 import FilterButtons from "./FilterButtons";
